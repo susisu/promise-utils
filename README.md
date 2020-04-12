@@ -10,6 +10,41 @@ npm i @susisu/promise-utils
 yarn add @susisu/promise-utils
 ```
 
+## Usage
+### `triplet`
+Creates a triplet of a promise and its resolve and reject functions.
+
+``` typescript
+import { triplet } from "@susisu/promise-utils";
+
+const [promise, resolve, reject] = triplet<number>();
+
+resolve(42);
+
+promise.then(res => {
+  console.log(res); // -> 42
+});
+```
+
+### `attachActions`
+Attaches cancellable actions to a promise.
+
+``` typescript
+import { triplet, attachActions } from "@susisu/promise-utils";
+
+const [promise, resolve, reject] = triplet<number>();
+
+const [cancel] = attachActions(
+  promise,
+  res => { console.log(res); },
+  err => { console.log(err); }
+);
+
+cancel();
+
+resolve(42); // no output
+```
+
 ## License
 
 [MIT License](http://opensource.org/licenses/mit-license.php)
