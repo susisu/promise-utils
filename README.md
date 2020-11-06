@@ -1,6 +1,6 @@
 # @susisu/promise-utils
 
-[![Build Status](https://travis-ci.com/susisu/promise-utils.svg?branch=master)](https://travis-ci.com/susisu/promise-utils)
+[![CI](https://github.com/susisu/promise-utils/workflows/CI/badge.svg)](https://github.com/susisu/promise-utils/actions?query=workflow%3ACI)
 
 Promise utilities
 
