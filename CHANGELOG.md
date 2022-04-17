@@ -1,3 +1,7 @@
+## 0.1.2 (2022-04-17)
+- Add source files in the distribution package
+  - Now users can refer to the source files in node_modules via source maps
+
 ## 0.1.1 (2021-12-02)
 - Upgrade devDependencies
 
