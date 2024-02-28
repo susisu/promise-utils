@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  plugins: ["jest", "jest-formatting"],
+  plugins: ["vitest"],
   overrides: [
     {
       files: ["*.{ts,tsx}"],
@@ -24,10 +24,7 @@ module.exports = {
     },
     {
       files: ["*.{test,spec}.{ts,tsx}", "src/**/__tests__/**/*.{ts,tsx}"],
-      extends: ["plugin:jest/recommended", "plugin:jest-formatting/recommended"],
-      env: {
-        "jest/globals": true,
-      },
+      extends: ["plugin:vitest/recommended"],
     },
     {
       files: ["*.js"],
