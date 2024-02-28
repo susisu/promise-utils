@@ -5,13 +5,18 @@
 Promise utilities
 
 ``` shell
+# npm
 npm i @susisu/promise-utils
-# or
+# yarn
 yarn add @susisu/promise-utils
+# pnpm
+pnpm add @susisu/promise-utils
 ```
 
 ## Usage
+
 ### `triplet`
+
 Creates a triplet of a promise and its resolve and reject functions.
 
 ``` typescript
@@ -27,6 +32,7 @@ promise.then(res => {
 ```
 
 ### `attachActions`
+
 Attaches cancellable actions to a promise.
 
 ``` typescript

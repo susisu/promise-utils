@@ -1,3 +1,4 @@
+import { vi, describe, test, expect } from "vitest";
 import { triplet, attachActions } from ".";
 
 describe("triplet", () => {
@@ -21,8 +22,8 @@ describe("triplet", () => {
 describe("attachActions", () => {
   test("onFulfilled is called when the promise is resolved", async () => {
     const [promise, resolve] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [, actions] = attachActions(promise, onFulfilled, onRejected);
     resolve(42);
     await actions;
@@ -32,8 +33,8 @@ describe("attachActions", () => {
 
   test("onRejected is called when the promise is rejected", async () => {
     const [promise, , reject] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [, actions] = attachActions(promise, onFulfilled, onRejected);
     reject(new Error("test"));
     await actions;
@@ -43,8 +44,8 @@ describe("attachActions", () => {
 
   test("onFulfilled is not called if once cancelled", async () => {
     const [promise, resolve] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [cancel, actions] = attachActions(promise, onFulfilled, onRejected);
     cancel();
     resolve(42);
@@ -55,8 +56,8 @@ describe("attachActions", () => {
 
   test("onRejected is not called if once cancelled", async () => {
     const [promise, , reject] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [cancel, actions] = attachActions(promise, onFulfilled, onRejected);
     cancel();
     reject(new Error("test"));
@@ -67,8 +68,8 @@ describe("attachActions", () => {
 
   test("cancelling after the promise has been fulfilled has no effect", async () => {
     const [promise, resolve] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [cancel, actions] = attachActions(promise, onFulfilled, onRejected);
     resolve(42);
     await actions;
@@ -79,8 +80,8 @@ describe("attachActions", () => {
 
   test("cancelling after the promise has been rejected has no effect", async () => {
     const [promise, , reject] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [cancel, actions] = attachActions(promise, onFulfilled, onRejected);
     reject(new Error("test"));
     await actions;
@@ -91,8 +92,8 @@ describe("attachActions", () => {
 
   test("cancelling twice or more has no effect", async () => {
     const [promise, resolve] = triplet<number>();
-    const onFulfilled = jest.fn();
-    const onRejected = jest.fn();
+    const onFulfilled = vi.fn(() => {});
+    const onRejected = vi.fn(() => {});
     const [cancel, actions] = attachActions(promise, onFulfilled, onRejected);
     cancel();
     cancel();

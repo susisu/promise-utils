@@ -27,7 +27,7 @@ export type CancelFunc = () => void;
 export function attachActions<T>(
   promise: Promise<T>,
   onFulfilled: OnFulfilledFunc<T>,
-  onRejected: OnRejectedFunc
+  onRejected: OnRejectedFunc,
 ): [CancelFunc, Promise<void>] {
   let resolved = false;
   let cancelled = false;
@@ -37,18 +37,18 @@ export function attachActions<T>(
     }
   };
   const actions = promise.then(
-    data => {
+    (data) => {
       if (!cancelled) {
         resolved = true;
         onFulfilled(data);
       }
     },
-    err => {
+    (err) => {
       if (!cancelled) {
         resolved = true;
         onRejected(err);
       }
-    }
+    },
   );
   return [cancel, actions];
 }
